@@ -19,3 +19,48 @@ where Ci is the Close price at session i.
 ## quantmod -> setSymbolLookup -> getSymbols -> colnames -> T,indicator
 ## -> TTR -> ATR,SMI,ADX,aroon,BBands,chaikinVolatility,EMA,EMV,MACD,MFI,SAR,OHLC
 ## -> HLC(),Cl() -> specifyModel -> modelData -> buildModel ->
+
+ATR - (average true range)
+    the degree of price volatility, is an N-day exponential moving average of the true range values. Wilder recommended a 14-period smoothing.
+
+SMI - (Stochastic Momentum Index)
+	 the range between an asset’s high and low price during a given period of time. The idea behind is that prices tend to close near the extremes of the recent range before turning points
+
+ADX - (Average Directional Movement Index)
+	an indicator of trend strength in a series of prices.The ADX does not indicate trend direction or momentum, only trend strength. ADX will range between 0 and 100. Generally, ADX 
+readings below 20 indicate trend weakness, and readings above 40 indicate trend strength.
+
+aroon - (Aroon indicator)
+	A technical indicator used for identifying trends. It is made up of two lines: one line is called "Aroon up", which measures the strength of the uptrend, and the other line is called "Aroon 
+down", which measures the downtrend. The indicator reports the time it is taking for the price to reach, from a starting point, the highest and lowest points over a given time period, each reported as a 
+percentage of total time.
+
+BBands - (Bollinger Bands)
+	prices are high at the upper band and low at the lower band
+
+chaikinVolatility - (Chaikin Volatility)
+	indicator depicts volatility by calculating the difference between the high and low for each period or trading bar. It measures the difference between two moving averages of a volume-
+weighted accumulation distribution line.
+
+CLV (EMA) - (Close Location Value)
+	The CLV ranges between +1 and -1, where a value of +1 means the close is equal to the high and a value of -1 means the close is equal to the day's low.
+
+EMV - (Arms' Ease of Movement Value)
+	highlights the relationship between volume and price changes and is particularly useful for assessing the strength of a trend.High positive values indicate the price is increasing on low 
+volume: strong negative values indicate the price is dropping on low volume
+
+MACD - (moving average convergence/divergence)
+	reveal changes in the strength, direction, momentum, and duration of a trend in a stock's price.highlight recent changes in a stock's price. By comparing EMAs of different lengths, the 
+MACD series gauges changes in the trend of a stock. The difference between the MACD series and its average is claimed to reveal subtle shifts in the strength and direction of a stock's trend.
+
+MFI - (Money Flow Index)
+	ranges from 0 to 100. It is used to show the money flow (an approximation of the dollar value of a day's trading) over several days. measure the "enthusiasm" of the market. In other 
+words, the Money flow index shows how much a stock was traded.A value of 80 or more is generally considered overbought, a value of 20 or less oversold.
+
+SAR - (Parabolic Stop-and-Reverse)
+	 find potential reversals in the market price direction of traded goods such as securities or currency exchanges such as forex.  It is a trend-following (lagging) indicator and may be used to 
+set a trailing stop loss or determine entry or exit points based on prices tending to stay within a parabolic curve during a strong trend.
+
+OHLC - (Volatility indicator)
+
+In finance, volatility is a measure for variation of price of a financial instrument over time.
