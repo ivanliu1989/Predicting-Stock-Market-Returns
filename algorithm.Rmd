@@ -11,3 +11,7 @@ value is above our target margin p%:
 Ti
 The general idea of the variable T is to signal k-days periods that have
 several days with average daily prices clearly above the target variation.
+
+Predicting Stock Market Returns
+Ri-h = (Ci - Ci-h)/Ci-h
+where Ci is the Close price at session i.
