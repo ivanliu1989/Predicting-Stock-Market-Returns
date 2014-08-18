@@ -59,7 +59,7 @@ library(xts)
 
 # Build a random forest using the data available for training:
     library(randomForest)
-    TAP.AX <- HLC(TAP.AX)
+    TAP.AX$Volume <- TAP.AX$Volume+0.000000001
     data.model <- specifyModel(T.ind(TAP.AX) ~ Delt(Cl(TAP.AX),k=1:10) +
                                    myATR(TAP.AX) + mySMI(TAP.AX) + myADX(TAP.AX) + myAroon(TAP.AX) +
                                    myBB(TAP.AX) + myChaikinVol(TAP.AX) + myCLV(TAP.AX) +
