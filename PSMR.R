@@ -11,11 +11,11 @@ library(xts)
 ## quantmod
     library(quantmod)
 #     getSymbols("TAP.AX", from = "1970-01-01", to = "2009-09-15")
-#     colnames(TAP.AX) <- c("Open", "High", "Low", "Close", "Volume", "AdjClose")    
     setSymbolLookup(TAP=list(name='TAP.AX',src='yahoo'),
                     IBM=list(name='IBM',src='yahoo'),
                     USDEUR=list(name='USD/EUR',src='oanda'))
     getSymbols(c('TAP.AX'))
+    colnames(TAP.AX) <- c("Open", "High", "Low", "Close", "Volume", "Adjusted")
     head(TAP.AX)
 #     saveSymbolLookup()
 #     loadSymbolLookup()
@@ -68,7 +68,7 @@ library(xts)
                                    mySAR(TAP.AX) + runMean(Cl(TAP.AX)) + runSD(Cl(TAP.AX)))
     set.seed(1234)
     rf <- buildModel(data.model,method='randomForest',
-                     training.per=c(start(TAP.AX),index(TAP.AX["1999-12-31"])),
+                     training.per=c(start(TAP.AX),index(TAP.AX["2012-12-31"])),
                      ntree=50, importance=T)
 
     # IBM
