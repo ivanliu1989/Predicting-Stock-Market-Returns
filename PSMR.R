@@ -59,15 +59,16 @@ library(xts)
 
 # Build a random forest using the data available for training:
     library(randomForest)
-    data.model <- specifyModel(T.ind(GSPC) ~ Delt(Cl(GSPC),k=1:10) +
-                                   myATR(GSPC) + mySMI(GSPC) + myADX(GSPC) + myAroon(GSPC) +
-                                   myBB(GSPC) + myChaikinVol(GSPC) + myCLV(GSPC) +
-                                   CMO(Cl(GSPC)) + EMA(Delt(Cl(GSPC))) + myEMV(GSPC) +
-                                   myVolat(GSPC) + myMACD(GSPC) + myMFI(GSPC) + RSI(Cl(GSPC)) +
-                                   mySAR(GSPC) + runMean(Cl(GSPC)) + runSD(Cl(GSPC)))
+    TAP.AX <- HLC(TAP.AX)
+    data.model <- specifyModel(T.ind(TAP.AX) ~ Delt(Cl(TAP.AX),k=1:10) +
+                                   myATR(TAP.AX) + mySMI(TAP.AX) + myADX(TAP.AX) + myAroon(TAP.AX) +
+                                   myBB(TAP.AX) + myChaikinVol(TAP.AX) + myCLV(TAP.AX) +
+                                   CMO(Cl(TAP.AX)) + EMA(Delt(Cl(TAP.AX))) + myEMV(TAP.AX) +
+                                   myVolat(TAP.AX) + myMACD(TAP.AX) + myMFI(TAP.AX) + RSI(Cl(TAP.AX)) +
+                                   mySAR(TAP.AX) + runMean(Cl(TAP.AX)) + runSD(Cl(TAP.AX)))
     set.seed(1234)
     rf <- buildModel(data.model,method='randomForest',
-                     training.per=c(start(GSPC),index(GSPC["1999-12-31"])),
+                     training.per=c(start(TAP.AX),index(TAP.AX["1999-12-31"])),
                      ntree=50, importance=T)
 
     # IBM
