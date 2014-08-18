@@ -1,32 +1,31 @@
 setwd("C:\\Documents and Settings\\Macro\\Desktop\\Ivandata\\Predicting-Stock-Market-Returns")
 library(xts)
 
-# As the function get.hist.quote() returns an object of class zoo, we have
-# again used the function as.xts() to coerce it to xts.
+## As the function get.hist.quote() returns an object of class zoo, we have
+## again used the function as.xts() to coerce it to xts.
 #     library(tseries)
 #     TAP.AX <- as.xts(get.hist.quote("TAP.AX",start="1970-01-02", # end="2009-09-15",
 #                                   quote=c("Open", "High", "Low", "Close","Volume","AdjClose")))
 #     TAP.AX[c(1,nrow(GSPC))]
 
-# quantmod
+## quantmod
     library(quantmod)
 #     getSymbols("TAP.AX", from = "1970-01-01", to = "2009-09-15")
-#     colnames(TAP.AX) <- c("Open", "High", "Low", "Close", "Volume", "AdjClose")
-    
+#     colnames(TAP.AX) <- c("Open", "High", "Low", "Close", "Volume", "AdjClose")    
     setSymbolLookup(TAP=list(name='TAP.AX',src='yahoo'),
                     IBM=list(name='IBM',src='yahoo'),
                     USDEUR=list(name='USD/EUR',src='oanda'))
     getSymbols(c('TAP.AX'))
     head(TAP.AX)
-    # saveSymbolLookup()
-    # loadSymbolLookup()
+#     saveSymbolLookup()
+#     loadSymbolLookup()
 
-# indicator function
+## indicator function
     T.ind <- function(quotes, tgt.margin = 0.025, n.days = 10) {
         v <- apply(HLC(quotes), 1, mean) # HLC()-subset High, Low and Close. Apply - calculate avg of those three by row
-        r <- matrix(NA, ncol = n.days, nrow = NROW(quotes))
-        for (x in 1:n.days) r[, x] <- Next(Delt(v, k = x), x)
-        x <- apply(r, 1, function(x) sum(x[x > tgt.margin | x < -tgt.margin]))
+        r <- matrix(NA, ncol = n.days, nrow = nrow(quotes)) # nrow * n.days matrix with NA
+        for (x in 1:n.days) r[, x] <- Next(Delt(v, k = x), x) # Delt() - calculate the k-period percent diff between n and n+x. 
+        x <- apply(r, 1, function(x) sum(x[x > tgt.margin | x < -tgt.margin])) # sum % change larger than 0.025 in r, if >0 good, <0 bad.
         if (is.xts(quotes))
             xts(x, time(quotes))
         else x
@@ -34,8 +33,8 @@ library(xts)
 
 # newTA() can be used to create new
 # plotting functions for indicators that we wish to include in candlestick graphs.
-    png("indicator.png")
-    candleChart(last(GSPC, "3 months"), theme = "white", TA = NULL)
+    png("TAP.png")
+    candleChart(last(TAP.AX, "3 months"), theme = "white", TA = NULL)
     avgPrice <- function(p) apply(HLC(p), 1, mean)
     addAvgPrice <- newTA(FUN = avgPrice, col = 1, legend = "AvgPrice")
     addT.ind <- newTA(FUN = T.ind, col = "red", legend = "tgtRet")
