@@ -15,3 +15,6 @@ several days with average daily prices clearly above the target variation.
 Predicting Stock Market Returns
 Ri-h = (Ci - Ci-h)/Ci-h
 where Ci is the Close price at session i.
+
+## quantmod -> setSymbolLookup -> getSymbols -> colnames -> T,indicator
+## -> TTR -> ATR,SMI,ADX,aroon,BBands,chaikinVolatility,EMA,EMV,MACD,MFI,SAR,OHLC

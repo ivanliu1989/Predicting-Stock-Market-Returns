@@ -60,6 +60,8 @@ library(xts)
 # Build a random forest using the data available for training:
     library(randomForest)
     TAP.AX$Volume <- TAP.AX$Volume+0.000000001
+    # specifyModel - Create a single reusable model specification for subsequent buildModel calls. a quantmod object.
+    # getModelData() to obtain a refresh of the object (data.model)
     data.model <- specifyModel(T.ind(TAP.AX) ~ Delt(Cl(TAP.AX),k=1:10) +
                                    myATR(TAP.AX) + mySMI(TAP.AX) + myADX(TAP.AX) + myAroon(TAP.AX) +
                                    myBB(TAP.AX) + myChaikinVol(TAP.AX) + myCLV(TAP.AX) +
@@ -67,12 +69,16 @@ library(xts)
                                    myVolat(TAP.AX) + myMACD(TAP.AX) + myMFI(TAP.AX) + RSI(Cl(TAP.AX)) +
                                    mySAR(TAP.AX) + runMean(Cl(TAP.AX)) + runSD(Cl(TAP.AX)))
     set.seed(1234)
+    # The function buildModel() uses the resulting model specication
+    # and obtains a model with the corresponding data.
     rf <- buildModel(data.model,method='randomForest',
                      training.per=c(start(TAP.AX),index(TAP.AX["2012-12-31"])),
                      ntree=50, importance=T)
 
     # IBM
     ex.model <- specifyModel(T.ind(IBM) ~ Delt(Cl(IBM), k = 1:3))
+    # obtain the data using the function modelData()
+    # and use it with your favorite modeling function
     data <- modelData(ex.model, data.window = c("2009-01-01", "2009-08-10"))
     m <- myFavouriteModellingTool(ex.model@model.formula, as.data.frame(data))
 
