@@ -18,3 +18,4 @@ where Ci is the Close price at session i.
 
 ## quantmod -> setSymbolLookup -> getSymbols -> colnames -> T,indicator
 ## -> TTR -> ATR,SMI,ADX,aroon,BBands,chaikinVolatility,EMA,EMV,MACD,MFI,SAR,OHLC
+## -> HLC(),Cl() -> specifyModel -> modelData -> buildModel ->
