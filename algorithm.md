@@ -24,7 +24,7 @@ where Ci is the Close price at session i.
     the degree of price volatility, is an N-day exponential moving average of the true range values. Wilder recommended a 14-period smoothing.
 
 #### SMI - (Stochastic Momentum Index)
-	 the range between an asset’s high and low price during a given period of time. The idea behind is that prices tend to close near the extremes of the recent range before turning points
+	 the range between an assets high and low price during a given period of time. The idea behind is that prices tend to close near the extremes of the recent range before turning points
 
 #### ADX - (Average Directional Movement Index)
 	an indicator of trend strength in a series of prices.The ADX does not indicate trend direction or momentum, only trend strength. ADX will range between 0 and 100. Generally, ADX readings below 20 indicate trend weakness, and readings above 40 indicate trend strength.

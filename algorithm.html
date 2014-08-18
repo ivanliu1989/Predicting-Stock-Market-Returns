@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Daily average price:</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h4>Daily average price:</h4>
+
+<p>Pi = (Ci + Hi + Li)/3
+where Ci, Hi and Li are the close, high, and low quotes for day i, respectively.</p>
+
+<h4>Set of k percentage variations of today&#39;s close to the following</h4>
+
+<p>k days average prices (often called arithmetic returns):
+Vi = [(P(i+j) - Ci)/Ci]<sup>k,</sup> j=1</p>
+
+<h4>Indicator variable</h4>
+
+<p>is the total sum of the variations whose absolute value is above our target margin p%:Ti
+The general idea of the variable T is to signal k-days periods that have
+several days with average daily prices clearly above the target variation.</p>
+
+<h4>Predicting Stock Market Returns</h4>
+
+<p>Ri-h = (Ci - Ci-h)/Ci-h
+where Ci is the Close price at session i.</p>
+
+<h4>quantmod -&gt; setSymbolLookup -&gt; getSymbols -&gt; colnames -&gt; T,indicator</h4>
+
+<h4>-&gt; TTR -&gt; ATR,SMI,ADX,aroon,BBands,chaikinVolatility,EMA,EMV,MACD,MFI,SAR,OHLC</h4>
+
+<h4>-&gt; HLC(),Cl() -&gt; specifyModel -&gt; modelData -&gt; buildModel -&gt;</h4>
+
+<h2>Finacial Indicators</h2>
+
+<h4>ATR - (average true range)</h4>
+
+<pre><code>the degree of price volatility, is an N-day exponential moving average of the true range values. Wilder recommended a 14-period smoothing.
+</code></pre>
+
+<h4>SMI - (Stochastic Momentum Index)</h4>
+
+<pre><code> the range between an assets high and low price during a given period of time. The idea behind is that prices tend to close near the extremes of the recent range before turning points
+</code></pre>
+
+<h4>ADX - (Average Directional Movement Index)</h4>
+
+<pre><code>an indicator of trend strength in a series of prices.The ADX does not indicate trend direction or momentum, only trend strength. ADX will range between 0 and 100. Generally, ADX readings below 20 indicate trend weakness, and readings above 40 indicate trend strength.
+</code></pre>
+
+<h4>aroon - (Aroon indicator)</h4>
+
+<pre><code>A technical indicator used for identifying trends. It is made up of two lines: one line is called &quot;Aroon up&quot;, which measures the strength of the uptrend, and the other line is called &quot;Aroon down&quot;, which measures the downtrend. The indicator reports the time it is taking for the price to reach, from a starting point, the highest and lowest points over a given time period, each reported as a percentage of total time.
+</code></pre>
+
+<h4>BBands - (Bollinger Bands)</h4>
+
+<pre><code>prices are high at the upper band and low at the lower band
+</code></pre>
+
+<h4>chaikinVolatility - (Chaikin Volatility)</h4>
+
+<pre><code>indicator depicts volatility by calculating the difference between the high and low for each period or trading bar. It measures the difference between two moving averages of a volume-weighted accumulation distribution line.
+</code></pre>
+
+<h4>CLV (EMA) - (Close Location Value)</h4>
+
+<pre><code>The CLV ranges between +1 and -1, where a value of +1 means the close is equal to the high and a value of -1 means the close is equal to the day&#39;s low.
+</code></pre>
+
+<h4>EMV - (Arms&#39; Ease of Movement Value)</h4>
+
+<pre><code>highlights the relationship between volume and price changes and is particularly useful for assessing the strength of a trend.High positive values indicate the price is increasing on low volume: strong negative values indicate the price is dropping on low volume
+</code></pre>
+
+<h4>MACD - (moving average convergence/divergence)</h4>
+
+<pre><code>reveal changes in the strength, direction, momentum, and duration of a trend in a stock&#39;s price.highlight recent changes in a stock&#39;s price. By comparing EMAs of different lengths, the MACD series gauges changes in the trend of a stock. The difference between the MACD series and its average is claimed to reveal subtle shifts in the strength and direction of a stock&#39;s trend.
+</code></pre>
+
+<h4>MFI - (Money Flow Index)</h4>
+
+<pre><code>ranges from 0 to 100. It is used to show the money flow (an approximation of the dollar value of a day&#39;s trading) over several days. measure the &quot;enthusiasm&quot; of the market. In other words, the Money flow index shows how much a stock was traded.A value of 80 or more is generally considered overbought, a value of 20 or less oversold.
+</code></pre>
+
+<h4>SAR - (Parabolic Stop-and-Reverse)</h4>
+
+<pre><code> find potential reversals in the market price direction of traded goods such as securities or currency exchanges such as forex.  It is a trend-following (lagging) indicator and may be used to set a trailing stop loss or determine entry or exit points based on prices tending to stay within a parabolic curve during a strong trend.
+</code></pre>
+
+<h4>OHLC - (Volatility indicator)</h4>
+
+<p>In finance, volatility is a measure for variation of price of a financial instrument over time.</p>
+
+</body>
+
+</html>
+
