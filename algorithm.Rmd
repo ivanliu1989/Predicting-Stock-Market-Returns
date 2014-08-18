@@ -1,0 +1,13 @@
+Daily average price:
+Pi = (Ci + Hi + Li)/3
+where Ci, Hi and Li are the close, high, and low quotes for day i, respectively.
+
+Set of k percentage variations of today's close to the following
+k days average prices (often called arithmetic returns):
+Vi = [(P(i+j) - Ci)/Ci]^k, j=1
+
+Indicator variable is the total sum of the variations whose absolute
+value is above our target margin p%:
+Ti
+The general idea of the variable T is to signal k-days periods that have
+several days with average daily prices clearly above the target variation.
