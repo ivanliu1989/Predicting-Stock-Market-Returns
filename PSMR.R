@@ -130,10 +130,13 @@ library(xts)
     sigs.PR(sigs.svm, true.sigs)
 
     # SVMs for classification
-    
+    library(kernlab)
+    data <- cbind(signals = signals, Tdata.train[, -1])
+    ksv <- ksvm(signals ~ ., data[1:1000, ], C = 10) # C parameter to specify a different cost of constraints violations, which by default is 1.
+    ks.preds <- predict(ksv, data[1001:nrow(data), ])
+    sigs.PR(ks.preds, data[1001:nrow(data), 1])
 
-
-
+## Multivariate Adaptive Regression Splines
 
 
 
