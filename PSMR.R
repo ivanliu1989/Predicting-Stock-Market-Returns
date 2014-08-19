@@ -80,11 +80,18 @@ library(xts)
     # obtain the data using the function modelData()
     # and use it with your favorite modeling function
     data <- modelData(ex.model, data.window = c("2009-01-01", "2009-08-10"))
-    m <- myFavouriteModellingTool(ex.model@model.formula, as.data.frame(data))
+    # m <- myFavouriteModellingTool(ex.model@model.formula, as.data.frame(data))
 
+    # The generic function buildModel() returns the obtained model as a slot (fitted.model) of the quantmod object it produces
+    varImpPlot(rf@fitted.model, type = 1)
+    imp <- importance(rf@fitted.model, type = 1) # obtains the concrete scores for each variable
+    rownames(imp)[which(imp > 10)]
+    
+    # signal = sell(T < -0.1), hold, buy(T > -0.1), trading.signals() in book package
 
-
-
+    Tdata.train <- as.data.frame(modelData(data.model, data.window=c('1970-01-02','2012-12-31')))
+    Tdata.eval <- na.omit(as.data.frame(modelData(data.model, data.window=c('2013-01-01','2014-08-18'))))
+    Tform <- as.formula('T.ind.TAP.AX ~ .')
 
 
 
