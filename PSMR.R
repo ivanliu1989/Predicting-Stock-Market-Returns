@@ -93,7 +93,7 @@ library(xts)
     Tdata.eval <- na.omit(as.data.frame(modelData(data.model, data.window=c('2013-01-01','2014-08-18'))))
     Tform <- as.formula('T.ind.TAP.AX ~ .')
 
-    # Scale data scale(),unscale()
+## ANNs, Scale data scale(),unscale()
     set.seed(1234)
     library(nnet)
     library(DMwR)
@@ -120,9 +120,17 @@ library(xts)
     preds <- predict(nn, norm.data[1001:nrow(norm.data), ], type = "class")
     sigs.PR(preds, norm.data[1001:nrow(norm.data), 1])
 
+## Support Vector Machines (SVMs)
+    library(e1071)
+    # parameter cost indicates the cost of the violations of the margin
+    sv <- svm(Tform, Tdata.train[1:1000, ], gamma = 0.001, cost = 100)
+    s.preds <- predict(sv, Tdata.train[1001:nrow(Tdata.train), ])
+    sigs.svm <- trading.signals(s.preds, 0.1, -0.1)
+    true.sigs <- trading.signals(Tdata.train[1001:nrow(Tdata.train), "T.ind.TAP.AX"],0.1, -0.1)
+    sigs.PR(sigs.svm, true.sigs)
 
-
-
+    # SVMs for classification
+    
 
 
 
