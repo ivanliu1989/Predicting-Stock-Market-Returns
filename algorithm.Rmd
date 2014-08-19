@@ -18,7 +18,8 @@ where Ci is the Close price at session i.
 #### quantmod -> setSymbolLookup -> getSymbols -> colnames -> T,indicator
 #### -> TTR -> ATR,SMI,ADX,aroon,BBands,chaikinVolatility,EMA,EMV,MACD,MFI,SAR,OHLC
 #### -> HLC(),Cl() -> specifyModel -> modelData -> buildModel -> check importance (thredhold)
-#### -> transfer data into data.frame -> F-measure -> ANNs -> normalize data (mean0,sd1) ->
+#### -> transfer data into data.frame -> F-measure -> ANNs -> normalize data (mean0,sd1)
+#### -> transfer numeric prid into signals
 
 ## Finacial Indicators
 #### ATR - (average true range)

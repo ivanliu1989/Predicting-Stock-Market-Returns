@@ -98,8 +98,45 @@ library(xts)
     library(nnet)
     library(DMwR)
     norm.data <- scale(Tdata.train)
+    # size - how many nodes the hidden layer would have. 
+    # decay - controls the weight updating rate of the back-propagation algorithm
+    # maxit - the maximum number of iterations the weight convergence process is allowed
+    # linout=T - tells the function that we are handling a regression problem
+    # trace=F - to avoid some of the output of the function regarding the optimization process.
     nn <- nnet(Tform, norm.data[1:1000, ], size = 10, decay = 0.01,maxit = 1000, linout = T, trace = F)
     norm.preds <- predict(nn, norm.data[1001:nrow(norm.data), ])
     preds <- unscale(norm.preds, norm.data)
+
+    # transforming the numeric predictions into signals and then evaluate them
+    sigs.nn <- trading.signals(preds, 0.1, -0.1) #trading.signals() transforms numeric predictions into signals,given the buy and sell thresholds, respectively
+    true.sigs <- trading.signals(Tdata.train[1001:nrow(Tdata.train), "T.ind.TAP.AX"],0.1, -0.1)
+    sigs.PR(sigs.nn, true.sigs) # sigs.PR() obtains a matrix with the precision and recall scores of the two types of events,and overall.
+    
+    # ANNs for classification
+    set.seed(1234)
+    signals <- trading.signals(Tdata.train[, "T.ind.TAP.AX"], 0.1,-0.1)
+    norm.data <- data.frame(signals = signals, scale(Tdata.train[,-1]))
+    nn <- nnet(signals ~ ., norm.data[1:1000, ], size = 10, decay = 0.01,maxit = 1000, trace = F)
+    preds <- predict(nn, norm.data[1001:nrow(norm.data), ], type = "class")
+    sigs.PR(preds, norm.data[1001:nrow(norm.data), 1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
