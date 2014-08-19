@@ -22,6 +22,7 @@ where Ci is the Close price at session i.
 #### 1. ANNs -> normalize data (mean0,sd1) -> transfer numeric prid into signals -> matrix (precision)
 #### 2. SVMs -> train -> predict -> matrix (presicision)
 #### 3. MARS -> train -> predict -> matrix (presicision)
+#### -> Monte Carlo Estimates: experimentalComparison()
 
 
 ## Finacial Indicators
