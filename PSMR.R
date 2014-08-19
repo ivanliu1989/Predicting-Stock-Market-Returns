@@ -137,6 +137,12 @@ library(xts)
     sigs.PR(ks.preds, data[1001:nrow(data), 1])
 
 ## Multivariate Adaptive Regression Splines
+    library(earth)
+    e <- earth(Tform, Tdata.train[1:1000, ])
+    e.preds <- predict(e, Tdata.train[1001:nrow(Tdata.train), ])
+    sigs.e <- trading.signals(e.preds, 0.1, -0.1)
+    true.sigs <- trading.signals(Tdata.train[1001:nrow(Tdata.train), "T.ind.TAP.AX"],0.1, -0.1)
+    sigs.PR(sigs.e, true.sigs)
 
 
 
