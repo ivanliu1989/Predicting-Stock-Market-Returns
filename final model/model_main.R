@@ -1,4 +1,4 @@
-setwd("C:\\Documents and Settings\\Macro\\Desktop\\Ivandata\\Predicting-Stock-Market-Returns\\final model")
+setwd("C:\\Users\\Ivan.Liuyanfeng\\Desktop\\Data_Mining_Work_Space\\Predicting-Stock-Market-Returns\\final model")
 
 # getting the quotes for the testing period
 user.quote <- "TAP.AX"
@@ -82,10 +82,10 @@ t1 <- trading.simulator(market,true.sigs,'policy.1',list(exp.prof=0.05,bet=0.2,h
 t1
 summary(t1)
 tradingEvaluation(t1)
-plot(t1, market, theme = "white", name = "SP500")
+plot(t1, market, theme = "white", name = "ASX200")
 
 source("Trading policy2.R")
 t2 <- trading.simulator(market, true.sigs, "policy.2", list(exp.prof = 0.05, bet = 0.3))
 summary(t2)
 tradingEvaluation(t2)
-plot(t2, market, theme = "white", name = "SP500")
+plot(t2, market, theme = "white", name = "ASX200")
