@@ -93,6 +93,13 @@ library(xts)
     Tdata.eval <- na.omit(as.data.frame(modelData(data.model, data.window=c('2013-01-01','2014-08-18'))))
     Tform <- as.formula('T.ind.TAP.AX ~ .')
 
-
+    # Scale data scale(),unscale()
+    set.seed(1234)
+    library(nnet)
+    library(DMwR)
+    norm.data <- scale(Tdata.train)
+    nn <- nnet(Tform, norm.data[1:1000, ], size = 10, decay = 0.01,maxit = 1000, linout = T, trace = F)
+    norm.preds <- predict(nn, norm.data[1001:nrow(norm.data), ])
+    preds <- unscale(norm.preds, norm.data)
 
 
